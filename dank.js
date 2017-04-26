@@ -5,7 +5,10 @@
 
 const apiURL = 'https://www.googleapis.com/youtube/v3/playlistItems';
 
-var playlistId = 'PLUp3Q8z6bN4Y56BhCBsgXbSC9IW7DiX2r';
+var playlistId = 'PLUp3Q8z6bN4Y56BhCBsgXbSC9IW7DiX2r' ;
+if (location.hash) {
+    playlistId = location.hash.substring(1);
+}
 var maxResults = 50;
 var apiKey = 'AIzaSyDR9ds4W7uUssLUn7IuV4IIGrrPwmJD3hE';
 var apiPart = 'status%2C+contentDetails%2C+snippet';
@@ -106,6 +109,12 @@ function bootstrap() {
     tag.src = "https://www.youtube.com/player_api";
     var firstScriptTag = document.getElementsByTagName("script")[0];
     firstScriptTag.parentNode.insertBefore(tag, firstScriptTag);
+    document.onkeydown = function(evt) {
+        evt = evt || window.event;
+        if (evt.keyCode == 78) {
+            alert("Ctrl-Z");
+        }
+    };
 }
 
 window.onload = bootstrap
